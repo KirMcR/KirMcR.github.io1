@@ -1,0 +1,39 @@
+{% extends 'main/index.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+	<div style="width: 50%; float: left;  text-align: center;"><h2 class="text-center">Управление авиакомпаниями</h2></div>
+
+    <div style="width: 50%; float: left; text-align: right;"><a href="#win1"><button class="text-secondary">Добавить</button></a></div></br>
+<form action="#" method="POST">
+		{% csrf_token %}
+    <table class="p-4 planes table-hover table-striped border ml-4 rounded shadow-sm table-bordered"   style="width: 100%; height: 100%;">
+
+
+    <tr><th>Название</th><th>Дата основания</th><th>Местоположение</th><th>История создания</th><th>Компания сегодня</th><th>Директор</th><th>Редактирование</th></tr>
+    {% for company in companies %}
+    <tr>
+        <td>{{ company.company }}</td>
+        <td>{{ company.year }}</td>
+        <td>{{ company.location }}</td>
+        <td>{{ company.history }}</td>
+        <td>{{company.nowadays }}</td>
+        <td>{{ company.boss }}</td>
+        <td><button class="text-success" type ="submit" name ="delete" value={{ company.company }}>Удалить</button></td>
+    </tr>
+    {% endfor %}
+    </table>
+</form>
+    </br>
+
+    <h3 style="text-align:  center;"> Добавление авиакомпании</h3><hr>
+<a href="#x"  id="win1"></a>
+	<form action="#" method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<div style="width: 100%;">
+				<input type="submit" value="Создать" name="save" class="btn btn-outline-dark mt-2" style="float: right;">
+			</div>
+		</form>
+
+    </div>
+{% endblock %}

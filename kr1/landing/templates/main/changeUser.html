@@ -1,0 +1,36 @@
+{% extends 'main/index.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+<div style="width: 50%; float: left;  text-align: center;"><h2 class="text-center">Управление пользователями</h2></div>
+<div style="width: 50%; float: left; text-align: right;"><a href="#win1"><button class="text-secondary">Добавить</button></a></div>
+<table><tr></tr></table>
+    <form action="#" method="POST">
+		{% csrf_token %}
+<table class="p-4 planes table-hover table-striped border ml-4 rounded shadow-sm table-bordered"    style="width: 100%; height: 100%;">
+
+    <tr><th>ФИО</th><th>Дата рождения</th><th>Должность</th><th>Блокировка</th></tr>
+    {% for user in users %}
+    <tr><td>{{ user.surname }} {{ user.name }} {{ user.otch }}</td>
+        <td>{{ user.date_of_birth }}</td>
+        <td>{{ user.group }}</td>
+        <td>{% if user.log == "1" %}
+					<button class="btn ml-1 locker" name="unlock" value={{user.login}} >Разблокировать</button>
+				{% else %}
+					<button class="btn ml-1 locker" name="lock" value={{user.login}} >Заблокировать</button>
+				{% endif %}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+    </form>
+    </br>
+<h3 style="text-align:  center;"> Добавление пользователя</h3><hr>
+<a href="#x"  id="win1"></a>
+	<form action="#" method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<div style="width: 100%;">
+				<a href="#close"><input type="submit" value="Создать" name="save" class="btn btn-outline-dark mt-2" style="float: right;"></a>
+			</div>
+		</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'main/index.html' %}
+{% block main %}
+<table class="p-4 planes table-hover table-striped"  style="width: 100%; height: 100%;">
+
+
+    <tr><th>Название</th><th>Тип</th><th>Пилот</th><th>Количество мест</th><th>Дата покупки</th><th>Двигатели</th><th>Производитель</th><th>Авиакомпания-владелец</th></tr>
+    {% for plane in planes %}
+    <tr><td>{{ plane.name }}</td>
+        <td>{{ plane.type }}</td>
+        <td>{{ plane.pilot }}</td>
+        <td><details><summary style="height: 25px; float: left;"><i class="text-secondary">more...</i></summary><span class="w-100 p-3" id="more" style="float: left; border: 1px solid #85C1E9; border-radius: 8px;">{{  plane.mest }}</span></details></td>
+        <td><details><summary style="height: 25px; float: left;"><i class="text-secondary">more...</i></summary><span class="w-100 p-3" id="more" style="float: left; border: 1px solid #85C1E9; border-radius: 8px;">{{ plane.age }}</span></details></td>
+        <td><details><summary style="height: 25px; float: left;"><i class="text-secondary">more...</i></summary><span class="w-100 p-3" id="more" style="float: left; border: 1px solid #85C1E9; border-radius: 8px;">{{ plane.dvivatel }}</span></details></td>
+        <td><details><summary style="height: 25px; float: left;"><i class="text-secondary">more...</i></summary><span class="w-100 p-3" id="more" style="float: left; border: 1px solid #85C1E9; border-radius: 8px;">{{ plane.prois }}</span></details></td>
+        <td>{{plane.comp}}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
